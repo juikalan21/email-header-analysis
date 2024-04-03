@@ -7,22 +7,15 @@ from sklearn.metrics import accuracy_score
 dataset_path = 'C:/Users/juika/OneDrive/Desktop/cyberdosti/spam_ham_dataset.csv'
 df = pd.read_csv(dataset_path)
 
-
 X_train, X_test, y_train, y_test = train_test_split(df['text'], df['label'], test_size=0.2, random_state=42)
-
-
 vectorizer = CountVectorizer()
 X_train_vectorized = vectorizer.fit_transform(X_train)
 X_test_vectorized = vectorizer.transform(X_test)
 
-
 model = LogisticRegression(max_iter=1000)
 model.fit(X_train_vectorized, y_train)
 
-
 y_pred = model.predict(X_test_vectorized)
-
-
 accuracy = accuracy_score(y_test, y_pred)
 print("Accuracy:", accuracy)
 
